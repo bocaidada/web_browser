@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <title>挖矿</title>
+    <link rel="stylesheet" href="http://yun.janesi.net/web_browser/css/mui.min.css">
+    <link rel="stylesheet" href="http://yun.janesi.net/web_browser/css/mining.css">
+</head>
+<body>
+<section class="minBox">
+    <div class="minBack">
+        <div class="team_car">
+            <img src="http://yun.janesi.net/web_browser/img/tramcar.png" alt="">
+        </div>
+    </div>
+    <div class="strategy">挖矿攻略</div>
+    <div class="numHit">
+        <div class="jewelNum">
+            <div><img src="http://yun.janesi.net/web_browser/img/jewel.png" alt=""></div>
+            <div>钻石：</div>
+            <div>0</div>
+        </div>
+        <div class="powerNum">
+            <div><img src="http://yun.janesi.net/web_browser/img/power.png" alt=""></div>
+            <div>能量：</div>
+            <div>0</div>
+        </div>
+    </div>
+    <div class="transition">
+        <div class="get_energy">
+           <div>
+               <img src="http://yun.janesi.net/web_browser/img/get.png" alt="">
+           </div>
+           <div>获取能量</div>
+        </div>
+        <div class="auction">
+            <div>
+                <img src="http://yun.janesi.net/web_browser/img/auction.png" alt="">
+            </div>
+            <div>钻石拍卖</div>
+        </div>
+    </div>
+</section> 
+<section class="rank_list">
+    <div>钻石排行榜</div>
+    <ul class="us_list" id="us_list">
+        <!-- <li>
+            <div class="left">
+                <span>1</span>
+                <span>陌上少年着白衣</span>
+            </div>
+            <div class="right">23.15264钻</div>
+        </li>             -->
+    </ul>
+</section>
+          
+<script src="http://yun.janesi.net/web_browser/js/mui.min.js"></script>
+<script src="http://yun.janesi.net/web_browser/js/jquery.min.js"></script>
+<script src="http://yun.janesi.net/web_browser/js/rem.js"></script>
+<script src="http://yun.janesi.net/web_browser/js/mining.js"></script>
+<script type="text/javascript">
+        mui.init();
+        let game = new Game();
+        game.start();
+        let osType='IOS';
+
+        game.userId=''
+
+        mui.plusReady(
+            document.querySelector('.strategy').addEventListener('tap',function(){
+                game.terminal(osType,'strategy')
+            }),
+            document.querySelector('.jewelNum').addEventListener('tap',function(){
+                game.terminal(osType,'jeweRecord')
+            }),
+            document.querySelector('.powerNum').addEventListener('tap',function(){
+                game.terminal(osType,'powerRecord')
+            }),
+            document.querySelector('.get_energy').addEventListener('tap',function(){
+                game.terminal(osType,'get_energy')
+            }),
+            document.querySelector('.auction').addEventListener('tap',function(){
+                game.terminal(osType,'auction')
+            }),
+            mui('.minBack').on('tap','a',function(){
+                let state=this.getAttribute('class')
+                if(state=='state_login'){
+                    game.terminal(osType,'state_login')
+                }else{
+                    game.terminal(osType,'get_energy')
+                }
+            })
+        )
+</script>
+</body>
+</html>

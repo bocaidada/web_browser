@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <title>能量记录</title>
+    <link rel="stylesheet" href="http://yun.janesi.net/web_browser/css/mui.min.css">
+    <link rel="stylesheet" href="http://yun.janesi.net/web_browser/css/record.css">
+</head>
+<body>
+
+    
+    <script src="http://yun.janesi.net/web_browser/js/rem.js"></script>   
+    <script src="http://yun.janesi.net/web_browser/js/mui.min.js"></script>
+    <script>
+        mui.init();
+        let url='http://10.10.10.23:8801';
+        let userId='10010';
+
+
+        mui.ajax(url+'/app/browser/user/get_energy_log',{
+            type: 'GET',
+            data: {
+                'userId':userId,
+            },
+            dataType: "json",
+            success: function(e) {
+                console.log(e.result);
+                for(let i=0;i<e.result.length;i++){
+                    let section=document.createElement('section');
+                    let ul=document.createElement('ul');
+                    ul.classList.add('list');   
+                    let list=e.result[i].energyList
+                    section.innerHTML=`
+                            <div class="top">${e.result[i].dateAlias}</div>
+                            `;
+                            for(let j=0;j<list.length;j++){
+                                 let li=document.createElement('li');
+                                li.innerHTML=`
+                                        <div class="list_left">
+                                            <p>${list[j].operateName}</p>
+                                            <p>
+                                                <span>${list[j].operateTime}</span>
+                                            </p>
+                                        </div>
+                                        <div class="list_right">${list[j].showEnergyNum}</div>
+                                `
+                                ul.appendChild(li);
+                            }   
+                    section.appendChild(ul);
+                    document.body.appendChild(section)
+                   
+                }
+            }
+        });
+    </script>
+</body>
+</html>
