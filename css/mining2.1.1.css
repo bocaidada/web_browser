@@ -1,0 +1,444 @@
+body,html,p,a,img,ul,li,h1,h3,h2,h4,h5{
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+    font-family: 'DINPro-Bold';   /*字体名称*/
+    src: url('../font/DINPro-Medium.otf');       /*字体源文件*/
+}
+body{
+    width: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+    /*background: #310156;*/
+    font-size: 0.32rem;
+    color: #fff;
+    font-weight: normal;
+    font-family: 'PingFang SC','Microsoft YaHei','SimSun','Arial', sans-serif;
+}
+
+body::-webkit-scrollbar{
+    width:0;
+    height:1px;
+    display: none;
+    background-color: rgba(0,0,0,0)
+}
+body::-webkit-scrollbar-thumb{border-radius:5px;-webkit-box-shadow:inset 0 0 5px rgba(0,0,0,.2);background:rgba(0,0,0,.2)}
+body::-webkit-scrollbar-track{
+     background-color: rgba(0,0,0,0);
+}
+body::-webkit-scrollbar-track-piece{
+     background-color: rgba(0,0,0,0);
+}
+
+.imgBox{
+    width: 100%;
+    height: 21.28rem;
+    background: url("../img/img_lbb_2.1.1/Group_2@2x.png") no-repeat center/cover;
+    padding: 0.9rem 0.3rem 0;
+    box-sizing: border-box;
+    position: relative;
+}
+.topTitle{
+    line-height: 0.66rem;
+    font-size: 0.48rem;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+    font-weight: bold;
+    letter-spacing: 0.01rem;
+}
+.titTip{
+    width: 100%;
+    height: 2.64rem;
+    border-radius: 0.2rem;
+    background: rgba(75,142,248,.18);
+    font-size: 0.28rem;
+}
+.titTip_top{
+    width: 100%;
+    height: 0.9rem;
+    line-height: 0.9rem;
+    border-bottom: 0.01rem solid rgba(238,238,238,.2);
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255,255,255,.6);
+    padding: 0 0.2rem;
+    box-sizing: border-box;
+}
+.titTip_bot{
+    width: 100%;
+    height: 1.6rem;
+    line-height: 1.6rem;
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255,255,255,.6);
+    padding: 0 0.2rem;
+    box-sizing: border-box;
+}
+.money{
+    padding: 0 0 0 0.05rem;
+    color: #fff;
+    font-size: 0.8rem;
+    font-family: 'DINPro-Bold';
+}
+.juwNum{
+    padding: 0 0 0 0.05rem;
+    color: #fff;
+    font-size: 0.4rem;
+    font-family: 'DINPro-Bold';
+}
+.titTip_bot>div:last-child{
+    width: 1.4rem;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    border-radius: 0.3rem;
+    background: linear-gradient(to right, #4179F7, #65C1FF);
+    color: #fff;
+    text-align: center;
+    margin-top: 0.6rem;
+    font-size: 0.28rem;
+    letter-spacing: 0.01rem;
+}
+.correlation{
+    width: 100%;
+    line-height: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.24rem;
+}
+.correlation>span{
+    display: block;
+    width: 16%;
+}
+.minBox{
+    width: 100%;
+    height: 3.8rem;
+    /*background: rgba(0,0,0,.2);*/
+    position: relative;
+}
+.jewel{
+    position: absolute;
+    left: 0.2rem;
+    top: 0.2rem;
+    width: 0.8rem;
+    height: 1.2rem;
+    font-size: 0.24rem;
+    text-align: center;
+    animation:starMove 3s linear infinite;
+    /*transition: all 1s;*/
+}
+.jewel>div{
+    width: 0.8rem;
+    height: 0.8rem;
+    background: url("../img/img_lbb_2.1.1/icon_mining.png") no-repeat center/cover;
+}
+
+.jewelTop{
+    top:-300px;
+}
+
+.minBox>.mine,.minBox>.login_jewel{
+    height: 1.8rem;
+    width: 1.2rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+    font-size: 0.24rem;
+    color: #D7FDFF;
+    animation:starMove 3s linear infinite;
+}
+.minBox>.login_jewel{
+    width: 1.4rem;
+}
+.minBox>.login_jewel>img,.minBox>.mine>img{
+    width: 0.9rem;
+    display: block;
+    margin: 0 auto 0.1rem;
+    animation:starRotate 12s linear infinite;
+}
+.minBox>.login_jewel>span{
+    display: block;
+    background: linear-gradient(to right, #FFAC1C, #FFD01D);
+    border-radius: 0.22rem;
+    line-height: 0.48rem;
+    color: #fff;
+}
+.minBox>.mine>.time{
+    width: 100%;
+    height: 0.3rem;
+    border-radius: 0.2rem;
+    line-height: 0.3rem;
+    position: relative;
+    overflow: hidden;
+    margin: 0.05rem 0;
+    background: rgba(75,142,248,.16);
+}
+.minBox>.mine>.time>div{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(255, 180, 34);
+    border-radius: 0.2rem;
+}
+.minBox>.mine>.time>span{
+    position: absolute;
+    text-align: center;
+    left: 0;
+    top: 0;
+    width: 100%;
+    line-height: 0.3rem;
+    z-index: 10;
+}
+/*矿石动画*/
+@keyframes starMove
+{
+    0%   {transform:translateY(0px);}
+    25%  {transform:translateY(6px);}
+    50% {transform:translateY(0px);}
+    75% {transform:translateY(-6px);}
+    100% {transform:translateY(0px);}
+}
+/*钻石旋转*/
+@keyframes starRotate
+{
+    0%   {transform:rotate(0deg);}
+    100% {transform:rotate(360deg);}
+}
+.active{
+    height: 0.7rem;
+    line-height: 0.7rem;
+    /*text-align: right;*/
+    font-size: 0.28rem;
+    margin-bottom: 0.2rem;
+    overflow: hidden;
+}
+.active>div{
+    float: right;
+}
+.task{
+    width: 100%;
+    height: 1.8rem;
+    margin-bottom: 0.35rem;
+    overflow: hidden;
+    box-sizing: border-box;
+    letter-spacing: 0.01rem;
+}
+.task_left{
+    width: 48%;
+    float: left;
+    height: 100%;
+    padding: 0 0.2rem;
+    background: rgba(75,142,248,.18);
+    border-radius: 0.2rem;
+    box-sizing: border-box;
+}
+.task_left_top{
+    height: 0.8rem;
+    /*line-height: 1rem;*/
+    width: 100%;
+}
+.task_left_top>div{
+    width: 2rem;
+    height: 100%;
+    font-size: 0.32rem;
+    line-height: 1rem;
+    position: relative;
+}
+.task_left_top>div>.hit{
+    width: 0.9rem;
+    height: 0.4rem;
+    line-height: 0.38rem;
+    position: absolute;
+    font-size: 0.24rem;
+    letter-spacing: 0.02rem;
+    background: linear-gradient(to right,#FF5151,#CD1CF7);
+    border-radius: 0.2rem 0.2rem 0.2rem 0;
+    text-align: center;
+    top: 0.24rem;
+    right: -0.4rem;
+}
+.task_left_bot{
+    width: 100%;
+    height: 1rem;
+    line-height: 0.43rem;
+    font-size: 0.24rem;
+    color: rgba(255,255,255,.6);
+}
+.task_right{
+    width: 48%;
+    height: 100%;
+    line-height: 1.8rem;
+    float: right;
+    /*text-align: right;*/
+    padding: 0 0.2rem;
+    background: rgba(75,142,248,.18);
+    border-radius: 0.2rem;
+    box-sizing: border-box;
+}
+.release{
+    width: 100%;
+    height: 3.34rem;
+    border-radius: 0.2rem;
+    background: rgba(75,142,248,.18);
+    /*margin-bottom: 0.4rem;*/
+    padding: 0.2rem;
+    box-sizing: border-box;
+    text-align: center;
+    color: #fff;
+
+}
+.release_top{
+    width: 100%;
+    height: 52%;
+}
+.release_bot{
+    width: 100%;
+    height: 48%;
+}
+.release_title{
+    line-height: 0.6rem;
+    font-size: 0.28rem;
+    color: rgba(255,255,255,.6);
+}
+.release_top>div:last-child{
+    line-height: 0.8rem;
+    font-size: 0.72rem;
+    font-family: 'DINPro-Bold';
+}
+.release_bot{
+    display: flex;
+    justify-content: space-between;
+}
+.release_bot_left{
+    width: 50%;
+    text-align: center;
+}
+.release_bot_right{
+    width: 50%;
+    text-align: center;
+}
+.release_bot .num{
+    line-height: 0.8rem;
+    font-size: 0.48rem;
+}
+.line_chart{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5.8rem;
+}
+.line_chart_title{
+    line-height: 1rem;
+    text-align: center;
+    font-size: 0.28rem;
+    color: rgba(255,255,255,.5);
+    margin-bottom: 0.1rem;
+}
+.line_chart_box{
+    width: 100%;
+    height: 4.2rem;
+    font-size: 0.24rem;
+    padding-top: 0.2rem;
+}
+#SLKecharts{
+    width:100%;
+    height:98%;
+}
+/*//新手引导*/
+.newUser{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    background: rgba(0,0,0,.8);
+}
+.newUser>img{
+    transition: all 1s;
+    /*opacity: 0;*/
+}
+.newUser>.totalSlk{
+    height: 2.08rem;
+    position: absolute;
+    top: 1.6rem;
+}
+.newUser>.moneyImg{
+    height: 1.96rem;
+    position: absolute;
+    top: 3.3rem;
+    left: 0.2rem;
+}
+.newUser>.taskImg{
+    height: 3.18rem;
+    position: absolute;
+    top: 8.54rem;
+    /*left: 0.3rem;*/
+}
+.newUser>.goodImg{
+    height: 4.56rem;
+    position: absolute;
+    top: 3.6rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.notLogin{
+    font-size: 0.5rem;
+}
+
+/*//提现*/
+.toExchange{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 20;
+    left: 0;
+    top: 0;
+    background: rgba(0,0,0,.6);
+}
+.tipBox{
+    width: 6rem;
+    height: 4rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 4.2rem;
+    background: #fff;
+    border-radius: 0.1rem;
+    text-align: center;
+    color: #333;
+    letter-spacing: 0.01rem;
+}
+.tipBoxTop{
+    width: 100%;
+    height: 3rem;
+    box-sizing: border-box;
+    padding-top: 0.5rem;
+}
+.tipBoxTop>p:first-child{
+    color: #0087FA;
+    font-size: 0.4rem;
+    line-height: 1.2rem;
+}
+.tipBoxTop>p:last-child{
+    font-size: 0.32rem;
+    line-height: 0.6rem;
+}
+.tipBoxBot{
+    width: 100%;
+    height: 1rem;
+    font-size: 0.32rem;
+    line-height: 1rem;
+    border-top: 0.01rem solid #eee;
+}
+[v-cloak] {
+    display:none !important;
+}
