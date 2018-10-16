@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <title></title>
+    <script src="../js/common/rem.js"></script>
+    <link rel="stylesheet" href="../css/mining_2.1.1.css">
+
+    <!--前端页面在线测试-->
+    <!--<script src="../js/common/vconsole.min.js"></script>-->
+    <!--<script>-->
+        <!--new VConsole();-->
+    <!--</script>-->
+</head>
+
+<body>
+<div id="root">
+    <section class="imgBox">
+        <!--提现弹窗提示-->
+        <div class="toExchange" v-cloak v-if="toExchangeFlag">
+            <div class="tipBox">
+                <div class="tipBoxTop">
+                    <p>此服务暂未开通</p>
+                    <p>正在火速开发中，敬请期待!</p>
+                </div>
+                <div class="tipBoxBot" @click="linkTo('toExchangeTip')">
+                    知道了
+                </div>
+            </div>
+        </div>
+        <!--新手引导-->
+        <div v-cloak v-if="noviceBoxFlag" class="newUser" @click="linkTo('novice')">
+            <img v-cloak :style="{opacity:totalSlkFlag}" class="totalSlk" src="../img/img_lbb_2.1.1/totalSlk@2x.png" alt="">
+            <img v-cloak :style="{opacity:moneyImgFlag}" class="moneyImg" src="../img/img_lbb_2.1.1/money@2x.png" alt="">
+            <img v-cloak :style="{opacity:taskImgFlag}" class="taskImg" src="../img/img_lbb_2.1.1/task@2x.png" alt="">
+            <img v-cloak :style="{opacity:goodImgFlag}" class="goodImg" src="../img/img_lbb_2.1.1/good@2x.png" alt="">
+        </div>
+        <div class="topTitle">
+            <span>布谷挖矿</span>
+            <span @click="linkTo('white_paper')">?</span>
+        </div>
+        <div class="titTip">
+            <div class="titTip_top">
+                <div @click="linkTo('price')">
+                    <span>总资产:</span>
+                    <span class="juwNum" id="juwNum" v-text="initData.totalSlk"></span>
+                    <span>谷粒</span>
+                </div>
+                <div>(1谷粒≈<span v-text="getChartDates.rate"></span>元)</div>
+            </div>
+            <div class="titTip_bot">
+                <div>
+                    <span>折合:</span>
+                    <span class="money" id="money" v-text="initData.moneyValue" :class="[isLogin ? 'notLogin' : '']"></span>
+                    <span>元</span>
+                </div>
+                <div @click="linkTo('toExchange')">提现</div>
+            </div>
+        </div>
+        <div class="correlation">
+            <span>公告：</span>
+            <marquee behavior="scroll" direction="left" scrollamount="4" v-text="noticeCon"></marquee>
+        </div>
+        <div class="minBox">
+            <!--登录-->
+            <div v-cloak v-if="isLogin" class="login_jewel">
+                <img src="../img/img_lbb_2.1.1/icon_kuang%20copy@2x.png" alt="">
+                <span @click="linkTo('toLogin')">开启登录</span>
+            </div>
+            <!--挖矿中-->
+            <div v-cloak v-if="minState" class="mine">
+                <img src="../img/img_lbb_2.1.1/icon_kuang%20copy@2x.png" alt="">
+                <div class="time">
+                    <div :style="{width: bgWith}"></div>
+                    <span v-text="count_down"></span>
+                </div>
+                <span>挖矿中</span>
+            </div>
+            <!--挖矿-->
+            <div v-cloak v-if="jewelState" @click="click(item,index)" class="jewel" :id="'jewel'+index" :style="{left:leftPosition[index]+'px',top:topPosition[index]+'px'}" v-for="(item, index) in jewelData">
+                <div></div>
+                <span v-text="item.slkNum"></span>
+            </div>
+        </div>
+        <div class="active">
+            <div>今日活跃算力：<span v-text="initData.todayPower"></span></div>
+        </div>
+        <div class="task">
+            <div class="task_left" @click="linkTo('task')">
+                <div class="task_left_top">
+                    <div>
+                        <span>算力任务</span>
+                        <span class="hit">加速</span>
+                    </div>
+                </div>
+                <div class="task_left_bot">99.9%的用户会点击这里获取更多谷粒</div>
+            </div>
+            <div class="task_right" @click="linkTo('rankIng')">
+                <div class="task_left_top">
+                    <div>全球排行榜</div>
+                </div>
+                <div class="task_left_bot">越努力越成功，最新排行看这里</div>
+            </div>
+        </div>
+        <div class="release">
+            <div class="release_top">
+                <div class="release_title">平台释放总量</div>
+                <div>700,000,000</div>
+            </div>
+            <div class="release_bot">
+                <div class="release_bot_left">
+                    <div class="release_title">累计挖矿总量</div>
+                    <div class="num" id="totalSlk" v-text="getChartDates.totalSlk" style="font-family: 'DINPro-Bold';"></div>
+                </div>
+                <div class="release_bot_right">
+                    <div class="release_title">矿工总人数</div>
+                    <div class="num" id="personCount" v-text="getChartDates.personCount" style="font-family: 'DINPro-Bold';"></div>
+                </div>
+            </div>
+        </div>
+        <div class="line_chart">
+            <div class="line_chart_title">每日挖矿统计（当日00:00更新）</div>
+            <div class="line_chart_box">
+                <div id="SLKecharts"></div>
+            </div>
+        </div>
+    </section>
+</div>
+<audio id="music" src="../img/img_lbb_2.1.1/mucsic.mp3"></audio>
+<script src="../js/common/zepto.min.js"></script>
+<script src="../js/common/fx.js"></script>
+<script src="../js/common/JanesiBridges.js"></script>
+<script src="../js/common/echarts.min.js"></script>
+<script src="../js/common/vue-min.js"></script>
+<script src="../js/charts.js"></script>
+<script src="../js/countUp.js"></script>
+<script src="../js/mining_2.1.1.js"></script>
+<!--<script src="../js/mining_2.1.js"></script>-->
+</body>
+
+</html>
