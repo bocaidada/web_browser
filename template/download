@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <script src="../js/flexible.js"></script>
+	<link rel="stylesheet" href="../css/mui.min.css">
+    <link rel="stylesheet" href="../css/sugar.css">
+    <title>看新闻上布谷，百万红包等你拿</title>
+</head>
+<body>
+    <section>
+        <img class="qiu" src="../img/invalidName@2xqiu.png" alt="">
+        <p><img src="../img/Group%20Copy@2x1.png" alt=""></p>
+        <div class="box">
+           <img src="../img/kaung@2x.png" alt="">
+           <div class="text">
+                <p class="intor" style="font-weight: 600;letter-spacing: 2px">限时注册免费送大量谷粒</p>
+                <p class="col_intor">剩余2188份！快去领取吧</p>
+               <a href="" target="_blank" class="but" id="load" style="display: block;text-decoration: none;">立即领取</a>
+               <!--<div class="but" id="load1" style="display: none">立即领取</div>-->
+            </div>
+        </div>
+    </section>
+    <script src="../js/common/mui.min.js"></script>
+    <script src="../js/common/JanesiBridges.js"></script>
+    <script type="text/javascript">
+        mui.init();
+        var osTypes;
+        if (window.JanesiBridge.isAndroid) {
+            osTypes = 'ANDROID'
+        } else {
+            osTypes = 'IOS'
+        }
+        function exposure(param) {
+            window.JanesiApi.reqUrl = "http://118.25.10.151:8808/log/spm";
+            // window.JanesiApi.reqUrl = 'http://spm.janesi.com/log/spm';
+            var myDate = new Date().getTime();
+            JanesiApi.trackApi('/log/spm', 'get', {
+                appId: '10012',
+                osType: osTypes,
+                eventType: param,
+                eventTime: myDate,
+                end_type: 'h5',
+                url: window.location.href,
+                referrer: '',
+                h5_locaiton: 'download'
+            }, function (res) {
+                console.log('ok')
+            })
+        }
+        exposure('show');
+        window.onload = function() {
+            var load = document.getElementById('load')
+            var load1 = document.getElementById('load1')
+			// document.getElementById('load').addEventListener('tap', function() {
+				var browser = {
+					versions: function() {
+						var u = navigator.userAgent,
+							app = navigator.appVersion;
+						return { //移动终端浏览器版本信息 
+							ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端 
+							android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器 
+							iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器 
+							iPad: u.indexOf('iPad') > -1, //是否iPad 
+						};
+					}(),
+				}
+				var ua = navigator.userAgent.toLowerCase();
+				// 浏览器环境
+				if(ua.match(/MicroMessenger/i) == "micromessenger") {
+					mui.toast('请在浏览器打开下载');
+				}else {
+					// ios环境
+					if(browser.versions.iPhone || browser.versions.iPad || browser.versions.ios) {
+						// mui.toast('ios即将上线，敬请期待');
+                        load.setAttribute('href','https://itunes.apple.com/cn/app/id1385051424?mt=8')
+						// window.location.href = 'https://itunes.apple.com/cn/app/id1385051424?mt=8'
+					}
+					// android环境
+					if(browser.versions.android) {
+                        // load.style.display = 'none';
+                        // load1.style.display = 'block';
+                        load.setAttribute('href','https://janesi-oss.oss-cn-shanghai.aliyuncs.com/app/android/bugu/app_release_.apk')
+						// mui.toast('android即将上线，敬请期待');
+						// window.location.href = 'https://yun.janesi.com/app%2Fandroid%2Fapp-release-test.apk';
+					}
+				}
+                exposure('click');
+            // })
+            // load1.addEventListener('tap',function () {
+            //     mui.toast('android即将上线，敬请期待');
+            // })
+		}
+
+    </script>
+</body>
+</html>
